@@ -1,0 +1,24 @@
+{
+  "name": "static-api-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/carlosrymer/static-api-server.git"
+  },
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/gulp test",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "config": "^1.19.0",
+    "express": "^4.13.4",
+    "express-winston": "^1.2.0",
+    "winston": "^2.2.0"
+  }
+}
