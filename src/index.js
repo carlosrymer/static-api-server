@@ -11,7 +11,8 @@ var app            = require('express')(),
 function sendFile(fileName, statusCode) {
 	return function(req, res) {
 		var response,
-				statusCode = statusCode || 200;
+				statusCode = statusCode || 200,
+				lang       = req.headers['Accept-Language'] || 'en';
 
 		if (!fileName) {
 			res
@@ -24,7 +25,7 @@ function sendFile(fileName, statusCode) {
 		}
 
 		try {
-			response = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'json/', fileName), options));
+			response = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'json/', lang, fileName), options));
 		} catch (e) {
 			console.error(e);
 			res
