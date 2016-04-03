@@ -27,7 +27,7 @@ Create a local.json file under the config directory with an object containing a 
 	routes : [{
 		"fileName" : "test.json",
 		"method"   : "get",
-		"path"     : "/test/123"
+		"path"     : "/test/:id"
 	}]
 }
 ```
