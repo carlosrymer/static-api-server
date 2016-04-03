@@ -8,13 +8,13 @@ var app            = require('express')(),
 			encoding : 'utf8'
 		};
 
-function sendFile(fileName, statusCode) {
+function sendFile(filePath, statusCode) {
 	return function(req, res) {
 		var response,
 				statusCode = statusCode || 200,
 				lang       = req.headers['Accept-Language'] || 'en';
 
-		if (!fileName) {
+		if (!filePath) {
 			res
 				.status(404)
 				.send({
@@ -25,7 +25,7 @@ function sendFile(fileName, statusCode) {
 		}
 
 		try {
-			response = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'json/', lang, fileName), options));
+			response = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'json/', lang, filePath), options));
 		} catch (e) {
 			console.error(e);
 			res
@@ -64,8 +64,8 @@ app.all('*', function(req, res, next) {
 config.routes.forEach(function(route) {
 	var method = route.method || 'get';
 
-	if (route.path && route.fileName) {
-		app[method](route.path, sendFile(route.fileName, route.statusCode));
+	if (route.path && route.filePath) {
+		app[method](route.path, sendFile(route.filePath, route.statusCode));
 	}
 });
 
