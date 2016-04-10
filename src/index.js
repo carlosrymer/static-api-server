@@ -12,7 +12,7 @@ function sendFile(filePath, statusCode) {
 	return function(req, res) {
 		var response,
 				statusCode = statusCode || 200,
-				lang       = req.headers['Accept-Language'] || 'en';
+				lang       = req.headers['accept-language'] || 'en';
 
 		if (!filePath) {
 			res
@@ -36,6 +36,8 @@ function sendFile(filePath, statusCode) {
 
 			return;
 		}
+
+		winston.info('Sending %s as response.', lang + '/' + filePath);
 
 		res
 			.status(statusCode)
